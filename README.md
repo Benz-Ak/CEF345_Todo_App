@@ -2,11 +2,12 @@
 
 ## Project Overview
 
-This is a full-stack web application developped as part of the **Software Developpment Tools** course at the ** Faculty of Engineering and Technology of University of Buea**
+This is a full-stack web application developped as part of the **Software Development Tools** course at the ** Faculty of Engineering and Technology of University of Buea**
 
 The project demonstrates the use of modern developpment tools including version control, agile methodologies, and containerization.
 
 ## Tech stack & Tools
+
 -- Project Management: Taiga
 -- Version control: Git & GitHub
 -- Backend:
@@ -15,6 +16,7 @@ The project demonstrates the use of modern developpment tools including version 
 -- DevOps:
 
 ## Group Members (Group ):
-1.AKOAYA NSENGUE BENZ BROWN
-2.
+
+1. AKOAYA NSENGUE BENZ BROWN
+2. ABONWI NEVIL SUH
 3.
