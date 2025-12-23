@@ -19,4 +19,4 @@ The project demonstrates the use of modern developpment tools including version 
 
 1. AKOAYA NSENGUE BENZ BROWN -- FE25P080
 2. ABONWI NEVIL SUH
-3.
+3. MANGADOU SONKWE WILFRIED --  FE25A677
