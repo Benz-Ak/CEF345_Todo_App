@@ -8,15 +8,15 @@ The project demonstrates the use of modern developpment tools including version 
 
 ## Tech stack & Tools
 
--- Project Management: Taiga
--- Version control: Git & GitHub
--- Backend:
--- Database: MySQL
--- IDE: Visual Studio Code
--- DevOps:
+# -- Project Management: Taiga
+# -- Version control: Git & GitHub
+# -- Backend:
+# -- Database: MySQL
+# -- IDE: Visual Studio Code
+# -- DevOps:
 
 ## Group Members (Group ):
 
-1. AKOAYA NSENGUE BENZ BROWN
+1. AKOAYA NSENGUE BENZ BROWN -- FE25P080
 2. ABONWI NEVIL SUH
 3.
