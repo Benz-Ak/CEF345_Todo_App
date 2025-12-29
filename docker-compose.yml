@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  # Base de données MySQL
+  db:
+    image: mysql:8.0
+    container_name: todo_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: todo_list
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_USER: user_todo
+      MYSQL_PASSWORD: user_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db_data:/var/lib/mysql
+
+  # Backend (Node.js) - Sera configuré plus tard
+  # backend:
+  #   build: ./backend
+  #   ports:
+  #     - "5000:5000"
+  #   depends_on:
+  #     - db
+
+volumes:
+  db_data:
