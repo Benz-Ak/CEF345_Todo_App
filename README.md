@@ -19,7 +19,7 @@ We have selected a modern stack to ensure scalability and environment consistenc
 ## 👥 Group Members (Group 33)
 | Name | Matricule | Role |
 | :--- | :--- | :--- |
-| **AKOAYA NSENGUE BENZ BROWN** | FE25P080 | [cite_start]Scrum Master / Backend Developer |
+| **AKOAYA NSENGUE BENZ BROWN** | FE25P080 | Scrum Master / Backend Developer |
 | **ABONWI NEVIL SUH** | FE25P078 | Frontend Developer |
 | **MANGADOU SONKWE WILFRIED** | FE25A677 | Database Administrator (DBA)  |
 
