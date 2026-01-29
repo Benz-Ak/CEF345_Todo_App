@@ -266,3 +266,48 @@ header h1 {
 .clear-btn:hover {
     color: #ff4d4d;
 }
+
+
+
+.todo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.todo-item.completed .task-text {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.task-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.delete-btn {
+    color: #ff4d4d;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Important : l'espace entre .completed et .task-text est crucial */
+.todo-item.completed .task-text {
+    text-decoration: line-through !important;
+    color: #a0a0a0;
+    opacity: 0.6;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.task-content {
+    display: flex;
+    align-items: center;
+}
+
