@@ -1,25 +1,39 @@
 services:
   db:
     image: mysql:8.0
-    container_name: todo_db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: todo_list
+      MYSQL_ROOT_PASSWORD: root_password
     ports:
       - "3306:3306"
     volumes:
-      # Chemin mis à jour selon ton arborescence
-      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - task_data:/var/lib/mysql
 
-  phpmyadmin:
-    image: phpmyadmin:latest
-    container_name: todo_phpmyadmin
-    restart: always
+  backend:
+    build: ./backend
     ports:
-      - "8080:80"
+      - "5000:5000"
     environment:
-      PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: root
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: root_password
+      DB_NAME: todo_list
+    volumes:
+      # On monte le code du backend dans /app/backend pour correspondre au Dockerfile
+      - ./backend:/app/backend
+      # On monte le dossier frontend à côté pour que "../frontend" dans server.js fonctionne
+      - ./frontend:/frontend
     depends_on:
       - db
+
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+
+volumes:
+  task_data:
