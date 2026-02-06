@@ -1,8 +1,8 @@
 const bcrypt = require('bcrypt');
 const db = require('../config/db');
-
+const jwt = require('jsonwebtoken'); // <--- Ajoute cette ligne !
 exports.signup = async (req, res) => {
-    const { full_name, email, password } = req.body;    try {
+    const { full_name, email, password } = req.body; try {
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -25,19 +25,27 @@ exports.login = async (req, res) => {
         const [users] = await db.query("SELECT * FROM users WHERE email = ?", [email]);
 
         if (users.length === 0) {
-            return res.status(401).json({ error: "user not founded" });
+            return res.status(401).json({ error: "user not found" });
         }
-        console.log(password)
-        const user = users[0];
 
+        const user = users[0];
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (!isMatch) {
             return res.status(401).json({ error: "wrong password!" });
         }
 
+        // 2. GÉNÉRER LE TOKEN ICI
+        const token = jwt.sign(
+            { id: user.id, email: user.email },
+            process.env.JWT_SECRET || 'ma_super_cle_secrete', // Utilise une clé secrète
+            { expiresIn: '24h' }
+        );
+
+        // 3. RENVOYER LE TOKEN AU FRONTEND
         res.status(200).json({
             message: "Connected !",
+            token: token, // <--- TRÈS IMPORTANT
             user: { id: user.id, email: user.email }
         });
     } catch (err) {

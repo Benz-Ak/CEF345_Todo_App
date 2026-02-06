@@ -1,0 +1,48 @@
+name: Backend Dev CI
+
+on:
+  push:
+    branches: [ "backend-dev" ] # On surveille ta branche actuelle
+  pull_request:
+    branches: [ "backend-dev" ]
+
+jobs:
+  test-backend:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: todo_db
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      # Étape cruciale : On peut injecter un script SQL pour créer tes tables user et tasks
+      - name: Initialize Database
+        run: |
+          mysql -h 127.0.0.1 -u root -proot -e "CREATE DATABASE IF NOT EXISTS todo_db;"
+          mysql -h 127.0.0.1 -u root -proot todo_db < ./database/schema.sql
+        # Assure-toi d'avoir un fichier .sql avec tes CREATE TABLE à cet endroit
+
+      - name: Run Unit Tests
+        run: npm test
+        env:
+          DB_HOST: 127.0.0.1
+          DB_USER: root
+          DB_PASS: root
+          DB_NAME: todo_db
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
